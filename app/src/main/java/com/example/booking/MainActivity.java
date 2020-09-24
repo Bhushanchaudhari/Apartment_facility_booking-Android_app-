@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
     RadioButton radioButton;
-    TextView  displayDate, startTime, endTime;
+    TextView displayDate, startTime, endTime;
     String facility;
     String date;
     String booked;
@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         book = findViewById(R.id.Book);
 
         ListView bookingList = findViewById(R.id.bookingList);
-        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, bookings);
+        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this,
+                android.R.layout.simple_list_item_1, bookings);
         bookingList.setAdapter(adapter);
-
 
 
         // for select date
@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, dateSetListener, year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
+                        dateSetListener, year, month, day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 datePickerDialog.show();
             }
@@ -101,40 +102,40 @@ public class MainActivity extends AppCompatActivity {
 
         ///for select start time and end time
 
-            startTime.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //initialize time picker dialog
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(
-                            MainActivity.this,
-                            new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    //initialize hour and minute
-                                    t1Hour = hourOfDay;
-                                    t1Minute = minute;
-                                    //initialize calender
-                                    Calendar calendar = Calendar.getInstance();
-                                    //set hour and minute
-                                    calendar.set(0, 0, 0, t1Hour, t1Minute);
-                                    //set selected time to text view
-                                    if (hourOfDay < 10 && minute < 10) {
-                                        startTime.setText("0" + t1Hour + ":" + "0" + t1Minute);
-                                        t1 = ("0" + t1Hour + ":" + "0" + t1Minute);
-                                        a1 = Integer.parseInt("0" + hourOfDay + "0" + minute);
-                                    } else if (hourOfDay >= 10 && minute >= 10) {
-                                        startTime.setText(t1Hour + ":" + t1Minute);
-                                        t1 = (t1Hour + ":" + t1Minute);
-                                        a1 = Integer.parseInt(hourOfDay + "" + minute);
-                                    } else if (hourOfDay < 10 && minute >= 10) {
-                                        startTime.setText("0" + t1Hour + ":" + t1Minute);
-                                        t1 = ("0" + t1Hour + ":" + t1Minute);
-                                        a1 = Integer.parseInt("0" + hourOfDay + "" + minute);
-                                    } else if (hourOfDay >= 10 && minute < 10) {
-                                        startTime.setText(t1Hour + ":" + "0" + t1Minute);
-                                        t1 = (t1Hour + ":" + "0" + t1Minute);
-                                        a1 = Integer.parseInt(hourOfDay + "0" + minute);
-                                    }
+        startTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //initialize time picker dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        MainActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                //initialize hour and minute
+                                t1Hour = hourOfDay;
+                                t1Minute = minute;
+                                //initialize calender
+                                Calendar calendar = Calendar.getInstance();
+                                //set hour and minute
+                                calendar.set(0, 0, 0, t1Hour, t1Minute);
+                                //set selected time to text view
+                                if (hourOfDay < 10 && minute < 10) {
+                                    startTime.setText("0" + t1Hour + ":" + "0" + t1Minute);
+                                    t1 = ("0" + t1Hour + ":" + "0" + t1Minute);
+                                    a1 = Integer.parseInt("0" + hourOfDay + "0" + minute);
+                                } else if (hourOfDay >= 10 && minute >= 10) {
+                                    startTime.setText(t1Hour + ":" + t1Minute);
+                                    t1 = (t1Hour + ":" + t1Minute);
+                                    a1 = Integer.parseInt(hourOfDay + "" + minute);
+                                } else if (hourOfDay < 10 && minute >= 10) {
+                                    startTime.setText("0" + t1Hour + ":" + t1Minute);
+                                    t1 = ("0" + t1Hour + ":" + t1Minute);
+                                    a1 = Integer.parseInt("0" + hourOfDay + "" + minute);
+                                } else if (hourOfDay >= 10 && minute < 10) {
+                                    startTime.setText(t1Hour + ":" + "0" + t1Minute);
+                                    t1 = (t1Hour + ":" + "0" + t1Minute);
+                                    a1 = Integer.parseInt(hourOfDay + "0" + minute);
+                                }
 //                                    Date d = null;
 //                                    try {
 //                                        d = formatTime.parse(t1);
@@ -142,19 +143,19 @@ public class MainActivity extends AppCompatActivity {
 //                                        e.printStackTrace();
 //                                    }
 
-                                    //   a1= Integer.parseInt(hourOfDay+""+minute);
-                                    Toast.makeText(MainActivity.this, "Strat Time : " + t1,
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }, 12, 0, true
-                    );
+                                //   a1= Integer.parseInt(hourOfDay+""+minute);
+                                Toast.makeText(MainActivity.this, "Strat Time : " + t1,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }, 12, 0, true
+                );
 
-                    //display previously selected time
-                    timePickerDialog.updateTime(t1Hour, t1Minute);
-                    //show time picker dialog
-                    timePickerDialog.show();
-                }
-            });
+                //display previously selected time
+                timePickerDialog.updateTime(t1Hour, t1Minute);
+                //show time picker dialog
+                timePickerDialog.show();
+            }
+        });
 
 
         endTime.setOnClickListener(new View.OnClickListener() {
@@ -169,207 +170,210 @@ public class MainActivity extends AppCompatActivity {
                                 t2Minute = minute;
 
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.set(0,0,0, t2Hour,t2Minute);
-                                if(hourOfDay<10 && minute<10){
-                                    endTime.setText("0"+t2Hour+":"+"0"+t2Minute);
-                                    t2=("0"+t2Hour+":"+"0"+t2Minute);
-                                    a2= Integer.parseInt("0"+hourOfDay+"0"+minute);
-                                }
-                                else if(hourOfDay>=10 && minute>=10){
-                                    endTime.setText(t2Hour+":"+t2Minute);
-                                    t2=(t2Hour+":"+t2Minute);
-                                    a2= Integer.parseInt(hourOfDay+""+minute);
-                                }
-                                else if (hourOfDay<10 && minute>=10){
-                                    endTime.setText("0"+t2Hour+":"+t2Minute);
-                                    t2=("0"+t2Hour+":"+t2Minute);
-                                    a2= Integer.parseInt("0"+hourOfDay+""+minute);
-                                }
-                                else if (hourOfDay>=10 && minute<10){
-                                    endTime.setText(t2Hour+":"+"0"+t2Minute);
-                                    t2=(t2Hour+":"+"0"+t2Minute);
-                                    a2= Integer.parseInt(hourOfDay+"0"+minute);
+                                calendar.set(0, 0, 0, t2Hour, t2Minute);
+                                if (hourOfDay < 10 && minute < 10) {
+                                    endTime.setText("0" + t2Hour + ":" + "0" + t2Minute);
+                                    t2 = ("0" + t2Hour + ":" + "0" + t2Minute);
+                                    a2 = Integer.parseInt("0" + hourOfDay + "0" + minute);
+                                } else if (hourOfDay >= 10 && minute >= 10) {
+                                    endTime.setText(t2Hour + ":" + t2Minute);
+                                    t2 = (t2Hour + ":" + t2Minute);
+                                    a2 = Integer.parseInt(hourOfDay + "" + minute);
+                                } else if (hourOfDay < 10 && minute >= 10) {
+                                    endTime.setText("0" + t2Hour + ":" + t2Minute);
+                                    t2 = ("0" + t2Hour + ":" + t2Minute);
+                                    a2 = Integer.parseInt("0" + hourOfDay + "" + minute);
+                                } else if (hourOfDay >= 10 && minute < 10) {
+                                    endTime.setText(t2Hour + ":" + "0" + t2Minute);
+                                    t2 = (t2Hour + ":" + "0" + t2Minute);
+                                    a2 = Integer.parseInt(hourOfDay + "0" + minute);
                                 }
 //                             else {
 //                                 endTime.setText(t2Hour+":"+t2Minute);
 //                                 t2=(t2Hour+":"+t2Minute);
 //                             }
-                                Date d= null;
+                                Date d = null;
                                 try {
                                     d = formatTime.parse(t2);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
 
-                                Toast.makeText(MainActivity.this, "End Time : "+t2, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "End Time : " + t2,
+                                        Toast.LENGTH_SHORT).show();
 
                             }
-                        },12,0,true
+                        }, 12, 0, true
                 );
-                timePickerDialog.updateTime(t2Hour,t2Minute);
+                timePickerDialog.updateTime(t2Hour, t2Minute);
                 timePickerDialog.show();
             }
         });
 
 
-
-
 /// on book butoon click
 
-            book.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    Boolean flag = false;
-                    Boolean flag_1= false;
+                Boolean flag = false;
+                Boolean flag_1 = false;
 
-                    String stratTime = "" + date + " " + t1 + ":00";
-                    String stopTime = "" + date + " " + t2 + ":00";
-
-
-                    // Custom date format
-                    SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
-
-                    Date d1 = null;
-                    Date d2 = null;
-                    try {
-                        d1 = format.parse(stratTime);
-                        d2 = format.parse(stopTime);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("d1",""+d1);
-                    Log.d("d2",""+d2);
+                String stratTime = "" + date + " " + t1 + ":00";
+                String stopTime = "" + date + " " + t2 + ":00";
 
 
-                    // Get msec from each, and subtract.
-                    long diff = d2.getTime() - d1.getTime();
-                    long diffMinutes = diff / (60 * 1000);
-                    long diffHours = diff / (60 * 60 * 1000);
+                // Custom date format
+                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+
+                Date d1 = null;
+                Date d2 = null;
+                try {
+                    d1 = format.parse(stratTime);
+                    d2 = format.parse(stopTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Log.d("d1", "" + d1);
+                Log.d("d2", "" + d2);
 
 
-                    Log.d("Diff Minute", "" + d1.getTime());
-                    Log.d("Diff Minute", "" + d2.getTime());
-
-                    Log.d("Diff Minute", "" + diffMinutes);
-                    Log.d("Diff Minute", "" + diffHours);
-
-                    Log.d("Diff t1", "" + t1Hour);
-                    Log.d("Diff t2", "" + t2Hour);
-
-                    //check already available or not
-                    if (facility.equals("Club House")) {
-                        if (startTimeList.size() == 0) {
-                            startTimeList.add(d1);
-                            endTimeList.add(d2);
-                        } else {
-                            if (startTimeList.contains(d1)) {
-                                Toast.makeText(MainActivity.this, "Not Available!!!!!",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            for (int i = 0; i < startTimeList.size(); i++) {
-                                if (d1.compareTo(startTimeList.get(i)) >= 0 && d1.compareTo(endTimeList.get(i)) <= 0) {
-//                                Toast.makeText(MainActivity.this, "Not Available!!!", Toast.LENGTH_SHORT).show();
-                                    Log.d("ms", "not available");
-                                    flag = true;
-                                }
-                                else if (d1.compareTo(startTimeList.get(i)) <= 0 && d1.compareTo(endTimeList.get(i)) >= 0){
-                                    Log.d("mss ", "woring");
-                                    flag = true;
-                                }
-                            }
-                            for (int i = 0; i < endTimeList.size(); i++) {
-                                if (d2.compareTo(endTimeList.get(i)) >= 0 && d2.compareTo(endTimeList.get(i)) <= 0) {
-                                    Log.d("ms", "end not available tennis");
-                                    flag_1 = true;
-                                }
-                            }
-                            startTimeList.add(d1);
-                            endTimeList.add(d2);
-                        }
-                    }
-                    if (facility.equals("Tennis Court")){
-                        Log.d("enter in loop","tennis");
-                        if (startTimeTennis.size() != 0) {
-                            if (startTimeTennis.contains(d1)) {
-                                Toast.makeText(MainActivity.this, "Not Available",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            for (int i = 0; i < startTimeTennis.size(); i++) {
-                                if (d1.compareTo(startTimeTennis.get(i)) >= 0 && d1.compareTo(startTimeTennis.get(i)) <= 0) {
-//                                Toast.makeText(MainActivity.this, "Not Available!!!", Toast.LENGTH_SHORT).show();
-                                    Log.d("ms", "not available tennis");
-                                    flag = true;
-                                }
-                                else if (d1.compareTo(startTimeTennis.get(i)) <= 0 && d1.compareTo(startTimeTennis.get(i)) >= 0){
-                                        Log.d("mss ","its working");
-                                        flag = true;
-                                }
-                            }
-                            for (int i = 0; i < endTimeTennis.size(); i++) {
-                                if (d2.compareTo(endTimeTennis.get(i)) >= 0 && d2.compareTo(endTimeTennis.get(i)) <= 0) {
-                                    Log.d("ms", "end not available tennis");
-                                    flag_1 = true;
-                                }
-                            }
-                        }
-                        startTimeTennis.add(d1);
-                        endTimeTennis.add(d2);
-                    }
+                // Get msec from each, and subtract.
+                long diff = d2.getTime() - d1.getTime();
+                long diffMinutes = diff / (60 * 1000);
+                long diffHours = diff / (60 * 60 * 1000);
 
 
-                    //cost per hour for club house and tennis court(per minute)
-                    int clubHouseCost = 100, tennisCourtCost = 50;
+                Log.d("Diff Minute", "" + d1.getTime());
+                Log.d("Diff Minute", "" + d2.getTime());
 
-                    float charges = 0;
-                    //calculate charges club house and tennis court
-                    if (facility.equals("Club House")) {
-                        if (t1Hour >= 10 && t1Hour < 16) {
-                            clubHouseCost = 100;
-                        } else if (t1Hour >= 16 && t1Hour <= 20) {
-                            clubHouseCost = 500;
-                        }
-                        if (diffHours == 0) {
-                            diffHours = 1;
-                        }
-                        charges = diffHours * clubHouseCost;
-                    }
-                    if (facility.equals("Tennis Court")) {
-                        if (diffHours == 0) {
-                            diffHours = 1;
-                        }
-                        charges = diffHours * tennisCourtCost;
-                    }
-                    if (facility.equals("Others")) {
-                        Toast.makeText(MainActivity.this, "Not Available", Toast.LENGTH_SHORT).show();
-                    }
+                Log.d("Diff Minute", "" + diffMinutes);
+                Log.d("Diff Minute", "" + diffHours);
 
-                    booked = facility + "," + date + ", Time: " + t1 + " To " + t2 + ", Charges: " + Math.abs(charges);
-                    if (bookings.contains(booked)) {
-                        Toast.makeText(MainActivity.this, "Already Booked",
-                                Toast.LENGTH_LONG).show();
+                Log.d("Diff t1", "" + t1Hour);
+                Log.d("Diff t2", "" + t2Hour);
+
+                //check already available or not
+                if (facility.equals("Club House")) {
+                    if (startTimeList.size() == 0) {
+                        startTimeList.add(d1);
+                        endTimeList.add(d2);
                     } else {
-                        if (flag ==false && flag_1==false){
-                            bookings.add(booked);
-                        }else {
-                            Log.d("falg", "NOT "+flag);
-                            Toast.makeText(MainActivity.this, "NOT AVAILABLE", Toast.LENGTH_SHORT).show();
-                            flag = false;
+                        if (startTimeList.contains(d1)) {
+                            Toast.makeText(MainActivity.this, "Not Available!!!!!",
+                                    Toast.LENGTH_SHORT).show();
                         }
-
-                     //   bookings.add(booked);
-                        //Toast.makeText(MainActivity.this, "Slot: " + bookings, Toast.LENGTH_LONG).show();
-                        for (int i = 0; i < bookings.size(); i++) {
-                            Log.d(TAG, "Bookings : " + bookings.get(i));
-                            Log.d("Time string : ", "" + date + " " + t1 + ":00");
+                        for (int i = 0; i < startTimeList.size(); i++) {
+                            if (d1.compareTo(startTimeList.get(i)) >= 0 && d1.compareTo(
+                                    endTimeList.get(i)) <= 0) {
+//                                Toast.makeText(MainActivity.this, "Not Available!!!", Toast.LENGTH_SHORT).show();
+                                Log.d("ms", "not available");
+                                flag = true;
+                            } else if (d1.compareTo(startTimeList.get(i)) <= 0 && d1.compareTo(
+                                    endTimeList.get(i)) >= 0) {
+                                Log.d("mss ", "woring");
+                                flag = true;
+                            }
                         }
-                        ListView bookingList = findViewById(R.id.bookingList);
-                        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, bookings);
-                        bookingList.setAdapter(adapter);
-
+                        for (int i = 0; i < endTimeList.size(); i++) {
+                            if (d2.compareTo(endTimeList.get(i)) >= 0 && d2.compareTo(
+                                    endTimeList.get(i)) <= 0) {
+                                Log.d("ms", "end not available tennis");
+                                flag_1 = true;
+                            }
+                        }
+                        startTimeList.add(d1);
+                        endTimeList.add(d2);
                     }
                 }
-            });
+                if (facility.equals("Tennis Court")) {
+                    Log.d("enter in loop", "tennis");
+                    if (startTimeTennis.size() != 0) {
+                        if (startTimeTennis.contains(d1)) {
+                            Toast.makeText(MainActivity.this, "Not Available",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        for (int i = 0; i < startTimeTennis.size(); i++) {
+                            if (d1.compareTo(startTimeTennis.get(i)) >= 0 && d1.compareTo(
+                                    startTimeTennis.get(i)) <= 0) {
+//                                Toast.makeText(MainActivity.this, "Not Available!!!", Toast.LENGTH_SHORT).show();
+                                Log.d("ms", "not available tennis");
+                                flag = true;
+                            } else if (d1.compareTo(startTimeTennis.get(i)) <= 0 && d1.compareTo(
+                                    startTimeTennis.get(i)) >= 0) {
+                                Log.d("mss ", "its working");
+                                flag = true;
+                            }
+                        }
+                        for (int i = 0; i < endTimeTennis.size(); i++) {
+                            if (d2.compareTo(endTimeTennis.get(i)) >= 0 && d2.compareTo(
+                                    endTimeTennis.get(i)) <= 0) {
+                                Log.d("ms", "end not available tennis");
+                                flag_1 = true;
+                            }
+                        }
+                    }
+                    startTimeTennis.add(d1);
+                    endTimeTennis.add(d2);
+                }
+
+
+                //cost per hour for club house and tennis court(per minute)
+                int clubHouseCost = 100, tennisCourtCost = 50;
+
+                float charges = 0;
+                //calculate charges club house and tennis court
+                if (facility.equals("Club House")) {
+                    if (t1Hour >= 10 && t1Hour < 16) {
+                        clubHouseCost = 100;
+                    } else if (t1Hour >= 16 && t1Hour <= 20) {
+                        clubHouseCost = 500;
+                    }
+                    if (diffHours == 0) {
+                        diffHours = 1;
+                    }
+                    charges = diffHours * clubHouseCost;
+                }
+                if (facility.equals("Tennis Court")) {
+                    if (diffHours == 0) {
+                        diffHours = 1;
+                    }
+                    charges = diffHours * tennisCourtCost;
+                }
+                if (facility.equals("Others")) {
+                    Toast.makeText(MainActivity.this, "Not Available", Toast.LENGTH_SHORT).show();
+                }
+
+                booked = facility + "," + date + ", Time: " + t1 + " To " + t2 + ", Charges: " + Math.abs(
+                        charges);
+                if (bookings.contains(booked)) {
+                    Toast.makeText(MainActivity.this, "Already Booked",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    if (flag == false && flag_1 == false) {
+                        bookings.add(booked);
+                    } else {
+                        Log.d("falg", "NOT " + flag);
+                        Toast.makeText(MainActivity.this, "NOT AVAILABLE",
+                                Toast.LENGTH_SHORT).show();
+                        flag = false;
+                    }
+
+                    //   bookings.add(booked);
+                    //Toast.makeText(MainActivity.this, "Slot: " + bookings, Toast.LENGTH_LONG).show();
+                    for (int i = 0; i < bookings.size(); i++) {
+                        Log.d(TAG, "Bookings : " + bookings.get(i));
+                        Log.d("Time string : ", "" + date + " " + t1 + ":00");
+                    }
+                    ListView bookingList = findViewById(R.id.bookingList);
+                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this,
+                            android.R.layout.simple_list_item_1, bookings);
+                    bookingList.setAdapter(adapter);
+
+                }
+            }
+        });
     }
 
     ///For Select Facility radio group
@@ -377,9 +381,6 @@ public class MainActivity extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
         facility = radioButton.getText().toString();
-        Toast.makeText(this, "Selected Facility "+facility,  Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Selected Facility " + facility, Toast.LENGTH_SHORT).show();
     }
-
-
-
 }
